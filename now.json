@@ -23,6 +23,31 @@
             "methods": ["GET"]
           },
           {
+            "src": "/v2/listen",
+            "dest": "/index.js",
+            "methods": ["GET","POST"]
+          },
+          {
+            "src": "/v2/listen/(?<slug>[^/]+)",
+            "dest": "/index.js",
+            "methods": ["GET","POST","PATCH"]
+          },
+          {
+            "src": "/signup",
+            "dest": "/index.js",
+            "methods": ["POST"]
+          },
+          {
+            "src": "/user",
+            "dest": "/index.js",
+            "methods": ["GET"]
+          },
+          {
+            "src": "/login",
+            "dest": "/index.js",
+            "methods": ["POST"]
+          },
+          {
             "src": "/settings",
             "dest": "/index.js",
             "methods": ["GET"]
