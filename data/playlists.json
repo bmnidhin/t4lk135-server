@@ -80,6 +80,51 @@
 		]
 	},
  {
+		"playlistID": 6,
+		"isPublished": false,
+		"title": "Playlist of TKM #4",
+		"slug": "playlist-of-tkm-four",
+		"content": "Playlist Two",
+		"album-art": "https://bmnidhin.github.io/t4lk-static/s1/pl1.jpg",
+		"songs": [
+			"id": 1,
+				"title": "Dynamite BTS- M S SREEBHAGYA ARCH'24",
+				"duration": "03:20",
+				"audio": "https://bmnidhin.github.io/t4lk-static/playlist/play3/dynamite-sreebhagya.mp3"
+			{
+				"id": 2,
+				"title": " Enn Amme - Arsha V Chand ECE22",
+				"duration": "02:02",
+				"audio": "https://bmnidhin.github.io/t4lk-static/playlist/play4/arsha.mp4"
+			},
+			{
+				"id": 3,
+				"title": "Innariyathe - Shine Kuttus Mech21",
+				"duration": "01:55",
+				"audio": "https://bmnidhin.github.io/t4lk-static/playlist/play4/shine.mpeg"
+			},
+			{
+				"id": 4,
+				"title": "Hallelujah - Nesma Nujum Niyaz EC22",
+				"duration": "01:57",
+				"audio": "https://bmnidhin.github.io/t4lk-static/playlist/play4/nesma.mp4"
+			},
+			{
+				"id": 5,
+				"title": "Enthe Innum Vanneela - Suchithra S CHEM22",
+				"duration": "01:45",
+				"audio": "https://bmnidhin.github.io/t4lk-static/playlist/play4/suchithra.mp4"
+			},
+			{
+				"id": 6,
+				"title": "Varamanjal - M.R.Sreeram MP23",
+				"duration": "03:43",
+				"audio": "https://bmnidhin.github.io/t4lk-static/playlist/play4/sreeram.mp3"
+			}
+
+		]
+	},
+ {
 		"playlistID": 5,
 		"isPublished": true,
 		"title": "Onam Playlist | Onam Songs",
