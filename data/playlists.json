@@ -79,19 +79,19 @@
 			}
 		]
 	},
- {
+	{
 		"playlistID": 6,
 		"isPublished": false,
 		"title": "Playlist of TKM #4",
 		"slug": "playlist-of-tkm-four",
 		"content": "Playlist Two",
 		"album-art": "https://bmnidhin.github.io/t4lk-static/s1/pl1.jpg",
-		"songs": [
-			"id": 1,
-				"title": "Dynamite BTS- M S SREEBHAGYA ARCH'24",
+		"songs": [{
+				"id": 1,
+				"title": "Dynamite BTS- M S SREEBHAGYA ARCH24",
 				"duration": "03:20",
 				"audio": "https://bmnidhin.github.io/t4lk-static/playlist/play3/dynamite-sreebhagya.mp3"
-			{
+			}, {
 				"id": 2,
 				"title": " Enn Amme - Arsha V Chand ECE22",
 				"duration": "02:02",
@@ -124,7 +124,7 @@
 
 		]
 	},
- {
+	{
 		"playlistID": 5,
 		"isPublished": true,
 		"title": "Onam Playlist | Onam Songs",
@@ -236,11 +236,12 @@
 				"duration": "02:07",
 				"audio": "https://bmnidhin.github.io/t4lk-static/playlist/play3/07-swaraj.aac"
 			}
-			  
-			
-			
+
+
+
 		]
-	}, {
+	},
+	{
 		"playlistID": 2,
 		"isPublished": true,
 		"title": "Playlist of TKM #2",
@@ -309,7 +310,8 @@
 			}
 
 		]
-	}, {
+	},
+	{
 		"playlistID": 1,
 		"isPublished": true,
 		"title": "Playlist of TKM #1",
