@@ -1,4 +1,16 @@
 [ {
+       "id": 8,
+      "title":"Online Class | Vine",
+      "slug": "online-class",
+      "isEventPublished":true,
+      "publishedAtDate":"2020-10-21",
+      "publishedAtTime":"19:00:00",
+      "content": "From sleeping in the backbenches to sleeping on your bed with your class on mute, 2020 has had its perks. Indeed online classes have deprived us of our precious morning sleep. Piles of assignments and online exams, quizzes and lab periods, barging into our locked down lives and our tutors striving even harder to teach us. So for our latest episode, we've worked to bring you a fun filled segment on Online Classes. ",
+      "URL": "https://d3ctxlq1ktw2nl.cloudfront.net/staging/2020-9-21/a688af24-dcba-0be8-1b7b-945b0c377b45.mp3",
+      "duration" :"08:41",
+      "cover" : "https://bmnidhin.github.io/t4lk-static/s1/ep9.jpg"
+    },
+ {
   "id": 1,
  "title":"Grease Mud Glory",
  "slug": "grease-mud-glory",
