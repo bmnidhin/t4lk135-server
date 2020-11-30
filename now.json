@@ -1,67 +1,62 @@
 {
-    "version": 2,
-    "builds": [{ "src": "index.js", "use": "@now/node-server" }],
-    "routes": [
-        {
-          "src": "/listen",
+  "version": 2,
+  "builds": [{ "src": "index.js", "use": "@now/node-server" }],
+  "routes": [
+      {
+        "src": "/listen",
+        "dest": "/index.js",
+        "methods": ["GET"]
+      },
+      {
+        "src": "/listen/(?<slug>[^/]+)",
+        "dest": "/index.js",
+        "methods": ["GET"]
+      },
+      {
+          "src": "/playlist",
           "dest": "/index.js",
           "methods": ["GET"]
         },
         {
-          "src": "/listen/(?<slug>[^/]+)",
+          "src": "/playlist/(?<slug>[^/]+)",
           "dest": "/index.js",
           "methods": ["GET"]
         },
         {
-            "src": "/playlist",
-            "dest": "/index.js",
-            "methods": ["GET"]
-          },
-          {
-            "src": "/playlist/(?<slug>[^/]+)",
-            "dest": "/index.js",
-            "methods": ["GET"]
-          },
-          {
-            "src": "/clubs",
-            "dest": "/index.js",
-            "methods": ["GET"]
-          },
-          {
-            "src": "/clubs/(?<slug>[^/]+)",
-            "dest": "/index.js",
-            "methods": ["GET"]
-          },
-          {
-            "src": "/featured",
-            "dest": "/index.js",
-            "methods": ["GET"]
-          },
-          {
-            "src": "/alltracks",
-            "dest": "/index.js",
-            "methods": ["GET"]
-          },
-          {
-            "src": "/alltracks/(?<slug>[^/]+)",
-            "dest": "/index.js",
-            "methods": ["GET"]
-          },
-          {
-            "src": "/promo/(?<slug>[^/]+)",
-            "dest": "/index.js",
-            "methods": ["GET"]
-          },
-          {
-            "src": "/settings",
-            "dest": "/index.js",
-            "methods": ["GET"]
-          },
-          {
-            "src": "/notifications",
-            "dest": "/index.js",
-            "methods": ["GET"]
-          }
-      ]
-      
-  }
+          "src": "/v2/listen",
+          "dest": "/index.js",
+          "methods": ["GET","POST"]
+        },
+        {
+          "src": "/v2/listen/(?<slug>[^/]+)",
+          "dest": "/index.js",
+          "methods": ["GET","POST","PATCH"]
+        },
+        {
+          "src": "/signup",
+          "dest": "/index.js",
+          "methods": ["POST"]
+        },
+        {
+          "src": "/user",
+          "dest": "/index.js",
+          "methods": ["GET"]
+        },
+        {
+          "src": "/login",
+          "dest": "/index.js",
+          "methods": ["POST"]
+        },
+        {
+          "src": "/settings",
+          "dest": "/index.js",
+          "methods": ["GET"]
+        },
+        {
+          "src": "/notifications",
+          "dest": "/index.js",
+          "methods": ["GET"]
+        }
+    ]
+    
+}
