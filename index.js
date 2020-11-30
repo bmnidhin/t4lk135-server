@@ -7,30 +7,28 @@ const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const verfiyToken =require('./utils/verifytoken')
 const port = 5000;
+const { Deta } = require("deta")
+require('dotenv').config()
+// const episodes = './data/episodes.json'
+// const crowd = './data/playlists.json'
 
-const episodes = './data/episodes.json'
-const crowd = './data/playlists.json'
-
-let posts = require(episodes)
-let playlist = require(crowd)
-let notifications = require("./data/notifications.json")
-let settings = require("./data/settings.json")
-let clubs = require("./data/club.json")
-let featured = require("./data/featured.json")
-let promo =require("./data/promo.json")
-let all =require("./data/alltracks.json")
-let settings = require("./data/settings.json");
+// let posts = require(episodes)
+// let playlist = require(crowd)
+// let notifications = require("./data/notifications.json")
+// let settings = require("./data/settings.json")
+// let clubs = require("./data/club.json")
+// let featured = require("./data/featured.json")
+// let promo =require("./data/promo.json")
+// let all =require("./data/alltracks.json")
+// let settings = require("./data/settings.json");
 const bodyParser = require("body-parser");
 
-const JWT_KEY =" WinterIsComingGOT2019"
-let Datastore = require('nedb'),
-users = new Datastore('./data/users.db');
-songs = new Datastore('./data/tom.db');
-site = new Datastore('./data/site.db');
+const JWT_KEY =process.env.JWT
 
-users.loadDatabase();
-songs.loadDatabase()
-site.loadDatabase()
+const deta = Deta(process.env.deta)
+const db = deta.Base("humans")
+const ep = deta.Base("episodes")
+
 app.use(cors());
 // Body parser
 app.use(express.urlencoded({ extended: false }));
@@ -46,154 +44,144 @@ app.get("/", (req, res) => {
   });
 
 app.post('/signup', function(req, res){
-  let  hashedPassword  =  bcrypt.hashSync(req.body.password, 8);
-  const username = req.body.username
   const password = req.body.password
- 
-  const newUser = {username:username, password:hashedPassword}
-   users.insert(newUser, function (err, newDoc,user) {   
-    var  token  =  jwt.sign({ id:  newDoc._id }, JWT_KEY, {expiresIn:  86400});
-    res.send({
-      auth:  true, user: newDoc, token:  token
-  });
-
-  });
-
- 
+  let  hashedPassword  =  bcrypt.hashSync(password, 8);
+  const username = req.body.username
+  
+  const key = req.body.id
+  // const newUser = { key:key, username:username, password:hashedPassword}
+  db.put({
+     key:username, password:hashedPassword
+  })
+  var  token  =  jwt.sign({ id:  key }, JWT_KEY, {expiresIn:  86400});
+  res.send({
+    auth:  true, token:  token
+});
 })
 
-app.get('/user', verfiyToken, function(req, res, next){
-  users.findOne({ username:  req.body.username },{ password:  0 }, function(err, user) {
-      if(err) {
-          return  res.status(500).send('There was a problem finding the user');
-      }
-
-      if(!user) {
-          return  res.status(404).send('No user found')
-      }
-
-      res.status(200).send(user)
-  });
+app.get('/user', verfiyToken, async (req, res) => {
+  const id = req.body.username;
+  const user = await db.get(id);
+  if (user) {
+      res.json(user);
+  } else {
+      res.status(404).json({"message": "user not found"});
+  }
 });
 
-app.post('/login', function(req, res) {
-  users.findOne({ username:  req.body.username }, function(err, user) {
-      if(err) {
-          return  res.status(200).send('Server error encountered');
-      }
-
-      if(!user) {
-          return  res.status(404).send('User not found');
-      }
-
-      var  passwordisValid  =  bcrypt.compareSync(req.body.password, user.password);
-
-      if (!passwordisValid) {
-          return  res.status(401).send({
-              auth:  false,
-              token:  null
-          })
-      }
-
-      var  token  =  jwt.sign({ id:  user._id }, JWT_KEY, {
-          expiresIn:  86400
-      });
-
-      res.status(200).send({
-          auth:  true,
-          user: req.body.username,
-          token:  token
+app.post('/login', async (req, res) => {
+  const id = req.body.username;
+  const user = await db.get(id);
+  if (!user) {
+   res.status(404).send('User not found');
+  } 
+  else {
+    var  passwordisValid  =  bcrypt.compareSync(req.body.password, user.password);
+    if (!passwordisValid) {
+      return  res.status(401).send({
+          auth:  false,
+          token:  null
       })
+  }
+
+  var  token  =  jwt.sign({ id:  user.id }, JWT_KEY, {
+      expiresIn:  86400
+  });
+
+  res.status(200).send({
+      auth:  true,
+      user: req.body.username,
+      token:  token
   })
-})
+  }
+  
+});
 
 
 
 app.post("/v2/listen", verfiyToken, function(req, res, next) {
    
+  ep.put({
+    title:req.body.title,
+    key:slugify(req.body.title),
+    slug:slugify(req.body.title),
+    inserted: new Date(),
+    published:req.body.published,
+    publishedAtDate:req.body.publishedAtDate,
+    publishedAtTime:req.body.publishedAtTime,
+    content:req.body.content,
+    URL:req.body.URL,
+    duration:req.body.duration,
+    cover:req.body.cover
+ })
+ res.send(req.body.isEventPublished)
+});
 
+app.get('/v2/listen', async (req, res, next) => {
+ 
+  const user = await ep.fetch({"published":true}).next();
+  if (user) {
+      res.json(user);
+  } else {
+      res.status(404).json({"message": "user not found"});
+  }
+});
+
+app.get('/v2/listen/:slug', async (req, res) => {
+  const slug = req.params.slug
+  const user = await ep.get(slug);
+  if (user) {
+      res.json(user);
+  } else {
+      res.status(404).json({"message": "user not found"});
+  }
+});
+
+app.put('/v2/listen/:slug',verfiyToken, async (req, res) => {
+  const id  =  req.params.slug;
   
-  let episode={
+  const toPut = {
+    key: id, 
     title:req.body.title,
     slug:slugify(req.body.title),
     inserted: new Date(),
-    published:req.body.isEventPublished,
+    published:req.body.published,
     publishedAtDate:req.body.publishedAtDate,
     publishedAtTime:req.body.publishedAtTime,
     content:req.body.content,
     URL:req.body.URL,
     duration:req.body.duration,
     cover:req.body.cover
-  }
-  songs.insert(episode,function (err, newDoc) {   // Callback is optional
-   res.send({sucesss:true,data:newDoc})
-  })
-  
+    };
+  const newItem = await ep.put(toPut);
+  return res.json(newItem)
 });
 
-app.get("/v2/listen",function(req, res, next){
-  songs.find({}).sort({ inserted: -1}).exec(function (err, docs) {
-   
-    songs.count({}, function (err, count) {
-      res.setHeader('Access-Control-Expose-Headers', "X-Total-Count")
-      res.setHeader('X-Total-Count', count)
-      res.send(docs)
-    });
-
-  });
-}
-)
-
-app.get('/v2/listen/:slug',  function (req, res) {
-   const slug = req.params.slug
-  songs.findOne({ slug: slug }, function (err, doc) {
-    res.send(doc)
-  });
-  
-  // res.json(slug)
-  
-})
 app.patch('/v2/listen/:slug', verfiyToken,  function (req, res) {
-  const slug = req.params.slug
-  let episode={
+  const id  =  req.params.slug;
+  
+  const toPut = {
+    key: id, 
     title:req.body.title,
     slug:slugify(req.body.title),
-    // inserted: new Date(),
-    published:req.body.isEventPublished,
+    inserted: new Date(),
+    published:req.body.published,
     publishedAtDate:req.body.publishedAtDate,
     publishedAtTime:req.body.publishedAtTime,
     content:req.body.content,
     URL:req.body.URL,
     duration:req.body.duration,
     cover:req.body.cover
-  }
-  songs.update({ slug: slug }, { $set: episode }, { multi: true }, function (err, numReplaced) {
-    res.send({suceess:true, replaced : numReplaced})
-  });
-   
- 
- // res.json(slug)
+    };
+  const newItem = ep.put(toPut);
+  return res.json(newItem)
  
 })
-app.delete('/v2/listen/:slug', verfiyToken, function(req,res){
-  const slug = req.params.slug
-  songs.remove({slug:slug}, { multi: true }, function (err, numRemoved) {
-    res.send({removed:true, removed:numRemoved})
-  });
-})
-
-app.delete('/v2/listen/delete', verfiyToken, function(req,res){
-  songs.remove({}, { multi: true }, function (err, numRemoved) {
-    res.send({removed:true, removed:numRemoved})
-  });
-})
-
-
-
-
-
-
-
+app.delete('/v2/listen/:slug', verfiyToken, async (req, res) => {
+  const id = req.params.slug;
+  await ep.delete(id);
+  res.json({"message": "deleted"})
+});
 
 
 
