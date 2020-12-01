@@ -47,6 +47,9 @@ app.get("/", (req, res) => {
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
   });
+
+
+
 app.post('/signup', function(req, res){
   const password = req.body.password
   let  hashedPassword  =  bcrypt.hashSync(password, 8);
@@ -72,10 +75,13 @@ app.get('/user', verfiyToken, async (req, res) => {
       res.status(404).json({"message": "user not found"});
   }
 });
-app.get("/login", (req, res) => {
-  res.send("get");
-  
-});
+app.get('/login', (req, res) => {
+  res.status(200).send({
+    auth:  true,
+    user: true,
+    token:  true
+})
+  });
 
 
 
