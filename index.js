@@ -87,7 +87,6 @@ app.post('/login', async (req, res) => {
   var  token  =  jwt.sign({ id:  user.id }, JWT_KEY, {
       expiresIn:  86400
   });
-  response.writeHead(200, {'Access-Control-Allow-Origin': '*'});
   res.status(200).send({
       auth:  true,
       user: req.body.username,
