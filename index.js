@@ -28,6 +28,8 @@ const JWT_KEY =process.env.JWT
 const deta = Deta(process.env.deta)
 const db = deta.Base("humans")
 const ep = deta.Base("episodes")
+const pr = deta.Base("project")
+
 
 app.use(cors());
 // Body parser
@@ -82,8 +84,31 @@ app.get('/login', (req, res) => {
     token:  true
 })
   });
-
-
+  app.post('/project', function(req, res){
+    pr.put({
+      time:new Date(),
+      status:true,
+      data:req.body
+    })
+   
+    res.send({
+      mangalambhavanthu:'🔥'
+  });
+  })
+  app.get('/project', async (req, res, next) => {
+ 
+    const user = await pr.fetch({"status":true}).next();
+    if (user) {
+        if(user==={}){
+          res.json({
+            mangalambhavanthu:'🔥'
+        });
+        }
+        res.json(user);
+    } else {
+        res.status(404).json({"message": "user not found"});
+    }
+  });
 
 app.post('/login', async (req, res) => {
   const id = req.body.username;
