@@ -72,6 +72,12 @@ app.get('/user', verfiyToken, async (req, res) => {
       res.status(404).json({"message": "user not found"});
   }
 });
+app.get("/login", (req, res) => {
+  res.send("get");
+  
+});
+
+
 
 app.post('/login', async (req, res) => {
   const id = req.body.username;

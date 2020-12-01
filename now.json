@@ -45,7 +45,7 @@
         {
           "src": "/login",
           "dest": "/index.js",
-          "methods": ["POST"]
+          "methods": ["POST,GET"]
         },
         {
           "src": "/settings",
