@@ -93,7 +93,7 @@ app.get('/login', (req, res) => {
     })
    
     res.send(
-      temp
+      "Temperature saved in server is" + temp
   );
   })
   app.get('/project', async (req, res, next) => {
