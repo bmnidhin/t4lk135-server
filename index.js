@@ -84,7 +84,7 @@ app.get('/login', (req, res) => {
     token:  true
 })
   });
-  app.post('/project/:value', function(req, res){
+  app.get('/project/:value', async (req, res, next) => {
     const temp = req.params.value
     pr.put({
       time:new Date(),
@@ -92,9 +92,9 @@ app.get('/login', (req, res) => {
       temp:temp
     })
    
-    res.send({
-      mangalambhavanthu:'🔥'
-  });
+    res.send(
+      "ok daa"
+  );
   })
   app.get('/project', async (req, res, next) => {
  
