@@ -86,11 +86,11 @@ app.get('/login', (req, res) => {
   });
   app.get('/project/:value', async (req, res, next) => {
     const temp = req.params.value
-    pr.put({
+    await pr.put({
       time:new Date(),
       status:true,
       temp:temp
-    })
+    }).next();
    
     res.send(
       "ok daa"
