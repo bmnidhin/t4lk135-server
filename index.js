@@ -87,7 +87,7 @@ app.get('/login', (req, res) => {
   app.get('/project/:value', async (req, res, next) => {
     const temp = req.params.value
     await pr.put({
-      time:new Date(),
+      key:new Date(),
       status:true,
       temp:temp
     })
