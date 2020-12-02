@@ -84,11 +84,12 @@ app.get('/login', (req, res) => {
     token:  true
 })
   });
-  app.post('/project', function(req, res){
+  app.post('/project/:value', function(req, res){
+    const temp = req.params.value
     pr.put({
       time:new Date(),
       status:true,
-      data:req.body
+      temp:temp
     })
    
     res.send({

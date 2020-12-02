@@ -41,7 +41,12 @@
         {
           "src": "/project",
           "dest": "/index.js",
-          "methods": ["GET","POST"]
+          "methods": ["GET"]
+        },
+        {
+          "src": "/project/(?<value>[^/]+)",
+          "dest": "/index.js",
+          "methods": ["POST"]
         },
         {
           "src": "/v2/listen/(?<slug>[^/]+)",
