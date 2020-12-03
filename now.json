@@ -44,7 +44,27 @@
           "methods": ["GET"]
         },
         {
-          "src": "/project/(?<value>[^/]+)",
+          "src": "/temperature/(?<value>[^/]+)",
+          "dest": "/index.js",
+          "methods": ["POST","GET"]
+        },
+        {
+          "src": "/moisture/(?<value>[^/]+)",
+          "dest": "/index.js",
+          "methods": ["POST","GET"]
+        },
+        {
+          "src": "/humidity/(?<value>[^/]+)",
+          "dest": "/index.js",
+          "methods": ["POST","GET"]
+        },
+        {
+          "src": "/light/(?<value>[^/]+)",
+          "dest": "/index.js",
+          "methods": ["POST","GET"]
+        },
+        {
+          "src": "/water/(?<value>[^/]+)",
           "dest": "/index.js",
           "methods": ["POST","GET"]
         },

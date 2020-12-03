@@ -29,6 +29,10 @@ const deta = Deta(process.env.deta)
 const db = deta.Base("humans")
 const ep = deta.Base("episodes")
 const pr = deta.Base("project")
+const mo = deta.Base("moisture")
+const hu = deta.Base("humidity")
+const cfl = deta.Base("light")
+const wa = deta.Base("water")
 
 
 app.use(cors());
@@ -84,7 +88,7 @@ app.get('/login', (req, res) => {
     token:  true
 })
   });
-  app.get('/project/:value', async (req, res, next) => {
+  app.get('/temperature/:value', async (req, res, next) => {
     const temp = req.params.value
     await pr.put({
       key:new Date(),
@@ -93,7 +97,55 @@ app.get('/login', (req, res) => {
     })
    
     res.send(
-      "Temperature saved in server is" + temp
+    temp
+  );
+  })
+  app.get('/moisture/:value', async (req, res, next) => {
+    const temp = req.params.value
+    await mo.put({
+      key:new Date(),
+      status:true,
+      temp:temp
+    })
+   
+    res.send(
+    temp
+  );
+  })
+  app.get('/humidity/:value', async (req, res, next) => {
+    const temp = req.params.value
+    await hu.put({
+      key:new Date(),
+      status:true,
+      temp:temp
+    })
+   
+    res.send(
+    temp
+  );
+  })
+  app.get('/light/:value', async (req, res, next) => {
+    const temp = req.params.value
+    await cfl.put({
+      key:new Date(),
+      status:true,
+      temp:temp
+    })
+   
+    res.send(
+    temp
+  );
+  })
+  app.get('/water/:value', async (req, res, next) => {
+    const temp = req.params.value
+    await wa.put({
+      key:new Date(),
+      status:true,
+      temp:temp
+    })
+   
+    res.send(
+    temp
   );
   })
   app.get('/project', async (req, res, next) => {
