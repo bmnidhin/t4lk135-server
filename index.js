@@ -155,12 +155,9 @@ app.get('/login', (req, res) => {
     const temperature = await pr.fetch({"status":true}).next();
     
     if (user) {
-        res.json({
-          meta:{"fetched":new Date()},
-          temperature,
-          }
-        
-        );
+        res.json(
+          temperature
+          );
     } else {
         res.status(404).json({"message": "user not found"});
     }
@@ -170,10 +167,10 @@ app.get('/login', (req, res) => {
     const humidity = await hu.fetch({"status":true}).next();
     
     if (user) {
-        res.json({
-          meta:{"fetched":new Date()},
-          humidity,
-          }
+        res.json(
+          
+          humidity
+          
         
         );
     } else {
@@ -185,10 +182,10 @@ app.get('/login', (req, res) => {
     const moisture = await mo.fetch({"status":true}).next();
     
     if (user) {
-        res.json({
-          meta:{"fetched":new Date()},
-         moisture,
-          }
+        res.json(
+         
+         moisture
+          
         
         );
     } else {
@@ -200,10 +197,10 @@ app.get('/login', (req, res) => {
     const light = await cfl.fetch({"status":true}).next();
     
     if (user) {
-        res.json({
-          meta:{"fetched":new Date()},
-         light,
-          }
+        res.json(
+          
+         light
+          
         
         );
     } else {
@@ -215,10 +212,10 @@ app.get('/login', (req, res) => {
     const water = await wa.fetch({"status":true}).next();
     
     if (user) {
-        res.json({
-          meta:{"fetched":new Date()},
-         water,
-          }
+        res.json(
+        
+         water
+          
         
         );
     } else {
