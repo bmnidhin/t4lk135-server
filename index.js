@@ -150,14 +150,29 @@ app.get('/login', (req, res) => {
   })
   app.get('/project', async (req, res, next) => {
  
-    const user = await pr.fetch({"status":true}).next();
+    const temperature = await pr.fetch({"status":true}).next();
+    const moisture = await mo.fetch({"status":true}).next();
+    const humidity = await hu.fetch({"status":true}).next();
+    const light = await cfl.fetch({"status":true}).next();
+    const water = await wa.fetch({"status":true}).next();
     if (user) {
         if(user==={}){
           res.json({
             mangalambhavanthu:'🔥'
         });
         }
-        res.json(user);
+        res.json({
+          meta:{
+            "fetched":new Date(),
+          },
+          temperature:temperature.value,
+          moisture:moisture.value,
+          humidity:humidity.value,
+          light:light.value,
+          water:water.value
+        }
+        
+        );
     } else {
         res.status(404).json({"message": "user not found"});
     }
