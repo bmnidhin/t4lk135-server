@@ -44,6 +44,31 @@
           "methods": ["GET"]
         },
         {
+          "src": "/temperature",
+          "dest": "/index.js",
+          "methods": ["GET"]
+        },
+        {
+          "src": "/moisture",
+          "dest": "/index.js",
+          "methods": ["GET"]
+        },
+        {
+          "src": "/humidity",
+          "dest": "/index.js",
+          "methods": ["GET"]
+        },
+        {
+          "src": "/light",
+          "dest": "/index.js",
+          "methods": ["GET"]
+        },
+        {
+          "src": "/water",
+          "dest": "/index.js",
+          "methods": ["GET"]
+        },
+        {
           "src": "/temperature/(?<value>[^/]+)",
           "dest": "/index.js",
           "methods": ["POST","GET"]

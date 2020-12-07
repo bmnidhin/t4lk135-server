@@ -148,36 +148,83 @@ app.get('/login', (req, res) => {
     temp
   );
   })
-  app.get('/project', async (req, res, next) => {
+  
+
+  app.get('/temperature', async (req, res, next) => {
  
     const temperature = await pr.fetch({"status":true}).next();
-    const moisture = await mo.fetch({"status":true}).next();
-    const humidity = await hu.fetch({"status":true}).next();
-    const light = await cfl.fetch({"status":true}).next();
-    const water = await wa.fetch({"status":true}).next();
+    
     if (user) {
-        if(user==={}){
-          res.json({
-            mangalambhavanthu:'🔥'
-        });
-        }
         res.json({
-          meta:{
-            "fetched":new Date(),
-          },
-          temperature:temperature,
-          moisture:moisture,
-          humidity:humidity,
-          light:light,
-          water:water
-        }
+          meta:{"fetched":new Date()},
+          temperature,
+          }
         
         );
     } else {
         res.status(404).json({"message": "user not found"});
     }
   });
-
+  app.get('/humidity', async (req, res, next) => {
+ 
+    const humidity = await hu.fetch({"status":true}).next();
+    
+    if (user) {
+        res.json({
+          meta:{"fetched":new Date()},
+          humidity,
+          }
+        
+        );
+    } else {
+        res.status(404).json({"message": "user not found"});
+    }
+  });
+  app.get('/moisture', async (req, res, next) => {
+ 
+    const moisture = await mo.fetch({"status":true}).next();
+    
+    if (user) {
+        res.json({
+          meta:{"fetched":new Date()},
+         moisture,
+          }
+        
+        );
+    } else {
+        res.status(404).json({"message": "user not found"});
+    }
+  });
+  app.get('/light', async (req, res, next) => {
+ 
+    const light = await cfl.fetch({"status":true}).next();
+    
+    if (user) {
+        res.json({
+          meta:{"fetched":new Date()},
+         light,
+          }
+        
+        );
+    } else {
+        res.status(404).json({"message": "user not found"});
+    }
+  });
+  app.get('/water', async (req, res, next) => {
+ 
+    const water = await wa.fetch({"status":true}).next();
+    
+    if (user) {
+        res.json({
+          meta:{"fetched":new Date()},
+         water,
+          }
+        
+        );
+    } else {
+        res.status(404).json({"message": "user not found"});
+    }
+  });
 app.post('/login', async (req, res) => {
   const id = req.body.username;
   const user = await db.get(id);
