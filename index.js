@@ -165,11 +165,11 @@ app.get('/login', (req, res) => {
           meta:{
             "fetched":new Date(),
           },
-          temperature:temperature.value,
-          moisture:moisture.value,
-          humidity:humidity.value,
-          light:light.value,
-          water:water.value
+          temperature:temperature,
+          moisture:moisture,
+          humidity:humidity,
+          light:light,
+          water:water
         }
         
         );
