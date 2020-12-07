@@ -88,7 +88,7 @@ app.get('/login', (req, res) => {
     token:  true
 })
   });
-  app.get('/temperature/:value', async (req, res, next) => {
+  app.get('/temperature/:value', async (req, res) => {
     const temp = req.params.value
     await pr.put({
       key:new Date(),
@@ -100,7 +100,7 @@ app.get('/login', (req, res) => {
     temp
   );
   })
-  app.get('/moisture/:value', async (req, res, next) => {
+  app.get('/moisture/:value', async (req, res) => {
     const temp = req.params.value
     await mo.put({
       key:new Date(),
@@ -112,7 +112,7 @@ app.get('/login', (req, res) => {
     temp
   );
   })
-  app.get('/humidity/:value', async (req, res, next) => {
+  app.get('/humidity/:value', async (req, res) => {
     const temp = req.params.value
     await hu.put({
       key:new Date(),
@@ -124,7 +124,7 @@ app.get('/login', (req, res) => {
     temp
   );
   })
-  app.get('/light/:value', async (req, res, next) => {
+  app.get('/light/:value', async (req, res) => {
     const temp = req.params.value
     await cfl.put({
       key:new Date(),
@@ -136,7 +136,7 @@ app.get('/login', (req, res) => {
     temp
   );
   })
-  app.get('/water/:value', async (req, res, next) => {
+  app.get('/water/:value', async (req, res) => {
     const temp = req.params.value
     await wa.put({
       key:new Date(),
@@ -152,9 +152,9 @@ app.get('/login', (req, res) => {
 
   app.get('/temperature', async (req, res, next) => {
  
-    const temperature = await pr.fetch({"status":true}).next();
+    const temperature = await pr.fetch({"status":true}).next()
     
-    if (user) {
+    if (temperature) {
         res.json(
           temperature
           );
@@ -162,11 +162,12 @@ app.get('/login', (req, res) => {
         res.status(404).json({"message": "user not found"});
     }
   });
+  
   app.get('/humidity', async (req, res, next) => {
  
     const humidity = await hu.fetch({"status":true}).next();
     
-    if (user) {
+    if (humidity) {
         res.json(
           
           humidity
@@ -181,7 +182,7 @@ app.get('/login', (req, res) => {
  
     const moisture = await mo.fetch({"status":true}).next();
     
-    if (user) {
+    if (moisture) {
         res.json(
          
          moisture
@@ -196,7 +197,7 @@ app.get('/login', (req, res) => {
  
     const light = await cfl.fetch({"status":true}).next();
     
-    if (user) {
+    if (light) {
         res.json(
           
          light
@@ -211,7 +212,7 @@ app.get('/login', (req, res) => {
  
     const water = await wa.fetch({"status":true}).next();
     
-    if (user) {
+    if (water) {
         res.json(
         
          water
