@@ -147,7 +147,7 @@ app.get('/v2/listen/:slug', async (req, res) => {
   if (user) {
       res.json(user);
   } else {
-      res.status(404).json({"message": "user not found"});
+      res.status(404).json({"message": "user not founds"});
   }
 });
 
