@@ -197,9 +197,9 @@ app.delete('/v2/listen/:slug', verfiyToken, async (req, res) => {
   res.json({"message": "deleted"})
 });
 
-app.post("/v2/log",function(req, res, next) {
+app.post("/v2/log",async function(req, res, next) {
    
-  log.put({
+  await log.put({
     key:req.body.slug+ "-"+ req.body.userId ,
     name: req.body.name,
     userId: req.body.userId,
