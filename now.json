@@ -39,59 +39,14 @@
           "methods": ["GET","POST"]
         },
         {
-          "src": "/project",
+          "src": "/v2/log",
+          "dest": "/index.js",
+          "methods": ["POST"]
+        },
+        {
+          "src": "/v2/log/(?<user>[^/]+)",
           "dest": "/index.js",
           "methods": ["GET"]
-        },
-        {
-          "src": "/temperature",
-          "dest": "/index.js",
-          "methods": ["GET"]
-        },
-        {
-          "src": "/moisture",
-          "dest": "/index.js",
-          "methods": ["GET"]
-        },
-        {
-          "src": "/humidity",
-          "dest": "/index.js",
-          "methods": ["GET"]
-        },
-        {
-          "src": "/light",
-          "dest": "/index.js",
-          "methods": ["GET"]
-        },
-        {
-          "src": "/water",
-          "dest": "/index.js",
-          "methods": ["GET"]
-        },
-        {
-          "src": "/temperature/(?<value>[^/]+)",
-          "dest": "/index.js",
-          "methods": ["POST","GET"]
-        },
-        {
-          "src": "/moisture/(?<value>[^/]+)",
-          "dest": "/index.js",
-          "methods": ["POST","GET"]
-        },
-        {
-          "src": "/humidity/(?<value>[^/]+)",
-          "dest": "/index.js",
-          "methods": ["POST","GET"]
-        },
-        {
-          "src": "/light/(?<value>[^/]+)",
-          "dest": "/index.js",
-          "methods": ["POST","GET"]
-        },
-        {
-          "src": "/water/(?<value>[^/]+)",
-          "dest": "/index.js",
-          "methods": ["POST","GET"]
         },
         {
           "src": "/v2/listen/(?<slug>[^/]+)",

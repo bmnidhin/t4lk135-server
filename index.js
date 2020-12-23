@@ -9,18 +9,18 @@ const verfiyToken =require('./utils/verifytoken')
 const port = 5000;
 const { Deta } = require("deta")
 require('dotenv').config()
-// const episodes = './data/episodes.json'
-// const crowd = './data/playlists.json'
+const episodes = './data/episodes.json'
+const crowd = './data/playlists.json'
 
-// let posts = require(episodes)
-// let playlist = require(crowd)
-// let notifications = require("./data/notifications.json")
-// let settings = require("./data/settings.json")
-// let clubs = require("./data/club.json")
-// let featured = require("./data/featured.json")
-// let promo =require("./data/promo.json")
-// let all =require("./data/alltracks.json")
-// let settings = require("./data/settings.json");
+let posts = require(episodes)
+let playlist = require(crowd)
+let notifications = require("./data/notifications.json")
+let settings = require("./data/settings.json")
+let clubs = require("./data/club.json")
+let featured = require("./data/featured.json")
+let promo =require("./data/promo.json")
+let all =require("./data/alltracks.json")
+
 const bodyParser = require("body-parser");
 
 const JWT_KEY =process.env.JWT
@@ -28,11 +28,7 @@ const JWT_KEY =process.env.JWT
 const deta = Deta(process.env.deta)
 const db = deta.Base("humans")
 const ep = deta.Base("episodes")
-const pr = deta.Base("project")
-const mo = deta.Base("moisture")
-const hu = deta.Base("humidity")
-const cfl = deta.Base("light")
-const wa = deta.Base("water")
+const log = deta.Base("log")
 
 
 app.use(cors());
@@ -87,141 +83,6 @@ app.get('/login', (req, res) => {
     user: true,
     token:  true
 })
-  });
-  app.get('/temperature/:value', async (req, res) => {
-    const temp = req.params.value
-    await pr.put({
-      key:new Date(),
-      status:true,
-      temp:temp
-    })
-   
-    res.send(
-    temp
-  );
-  })
-  app.get('/moisture/:value', async (req, res) => {
-    const temp = req.params.value
-    await mo.put({
-      key:new Date(),
-      status:true,
-      temp:temp
-    })
-   
-    res.send(
-    temp
-  );
-  })
-  app.get('/humidity/:value', async (req, res) => {
-    const temp = req.params.value
-    await hu.put({
-      key:new Date(),
-      status:true,
-      temp:temp
-    })
-   
-    res.send(
-    temp
-  );
-  })
-  app.get('/light/:value', async (req, res) => {
-    const temp = req.params.value
-    await cfl.put({
-      key:new Date(),
-      status:true,
-      temp:temp
-    })
-   
-    res.send(
-    temp
-  );
-  })
-  app.get('/water/:value', async (req, res) => {
-    const temp = req.params.value
-    await wa.put({
-      key:new Date(),
-      status:true,
-      temp:temp
-    })
-   
-    res.send(
-    temp
-  );
-  })
-  
-
-  app.get('/temperature', async (req, res, next) => {
- 
-    const temperature = await pr.fetch({"status":true}).next()
-    
-    if (temperature) {
-        res.json(
-          temperature
-          );
-    } else {
-        res.status(404).json({"message": "user not found"});
-    }
-  });
-  
-  app.get('/humidity', async (req, res, next) => {
- 
-    const humidity = await hu.fetch({"status":true}).next();
-    
-    if (humidity) {
-        res.json(
-          
-          humidity
-          
-        
-        );
-    } else {
-        res.status(404).json({"message": "user not found"});
-    }
-  });
-  app.get('/moisture', async (req, res, next) => {
- 
-    const moisture = await mo.fetch({"status":true}).next();
-    
-    if (moisture) {
-        res.json(
-         
-         moisture
-          
-        
-        );
-    } else {
-        res.status(404).json({"message": "user not found"});
-    }
-  });
-  app.get('/light', async (req, res, next) => {
- 
-    const light = await cfl.fetch({"status":true}).next();
-    
-    if (light) {
-        res.json(
-          
-         light
-          
-        
-        );
-    } else {
-        res.status(404).json({"message": "user not found"});
-    }
-  });
-  app.get('/water', async (req, res, next) => {
- 
-    const water = await wa.fetch({"status":true}).next();
-    
-    if (water) {
-        res.json(
-        
-         water
-          
-        
-        );
-    } else {
-        res.status(404).json({"message": "user not found"});
-    }
   });
 app.post('/login', async (req, res) => {
   const id = req.body.username;
@@ -336,6 +197,41 @@ app.delete('/v2/listen/:slug', verfiyToken, async (req, res) => {
   res.json({"message": "deleted"})
 });
 
+app.post("/v2/log",function(req, res, next) {
+   
+  log.put({
+    key:req.body.slug+ "-"+ req.body.userId ,
+    name: req.body.name,
+    userId: req.body.userId,
+    
+    title: req.body.title,
+    type: req.body.type,
+    progress: req.body.progress,
+   
+    slug: req.body.slug,
+    cover: req.body.cover,
+    time: new Date()
+    
+ })
+ res.send({status :"done"})
+});
+
+
+app.get('/v2/log/:user', async (req, res, next) => {
+  let uid = req.params.user
+  const water = await log.fetch({"userId":uid}).next();
+  
+  if (water) {
+      res.json(
+      
+       water.value
+        
+      
+      );
+  } else {
+      res.status(404).json({"message": "user not found"});
+  }
+});
 
 
 
