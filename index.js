@@ -198,7 +198,7 @@ app.delete('/v2/listen/:slug', verfiyToken, async (req, res) => {
 });
 
 app.post("/v2/log",async function(req, res, next) {
-   
+  let d = new Date();
   await log.put({
     key:req.body.slug+ "-"+ req.body.userId ,
     name: req.body.name,
@@ -210,7 +210,7 @@ app.post("/v2/log",async function(req, res, next) {
    
     slug: req.body.slug,
     cover: req.body.cover,
-    time: getTime()
+    time: d.getTime()
     
  })
  res.send({status :"done"})
