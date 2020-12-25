@@ -210,7 +210,7 @@ app.post("/v2/log",async function(req, res, next) {
    
     slug: req.body.slug,
     cover: req.body.cover,
-    time: new Date(value)
+    time: getTime()
     
  })
  res.send({status :"done"})
