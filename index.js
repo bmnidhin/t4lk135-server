@@ -29,7 +29,7 @@ const deta = Deta(process.env.deta)
 const db = deta.Base("humans")
 const ep = deta.Base("episodes")
 const log = deta.Base("log")
-
+const like = deta.Base("likes")
 
 app.use(cors());
 // Body parser
@@ -233,7 +233,28 @@ app.get('/v2/log/:user', async (req, res, next) => {
   }
 });
 
+app.post("/v2/eplike",async function(req, res, next) {
+   
+  await like.put({
+    key:req.body.slug+ "-"+ req.body.userId ,
+    name: req.body.name,
+    slug: req.body.slug,
+    userId: req.body.userId,
+    isLiked : req.body.isLiked
+    
+ })
+ res.send({status :"done"})
+});
 
+app.get('/v2/eplike/:slug', async (req, res) => {
+  const slug = req.params.slug
+  const user = await like.get(slug);
+  if (user) {
+      res.json(user);
+  } else {
+      res.status(404).json({"message": "user not founds"});
+  }
+});
 
 /* All posts */
 app.get("/listen", function(req, res, next) {

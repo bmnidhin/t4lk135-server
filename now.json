@@ -44,6 +44,16 @@
           "methods": ["POST"]
         },
         {
+          "src": "/v2/eplike",
+          "dest": "/index.js",
+          "methods": ["POST"]
+        },
+        {
+          "src": "/v2/eplike/(?<slug>[^/]+)",
+          "dest": "/index.js",
+          "methods": ["GET"]
+        },
+        {
           "src": "/v2/log/(?<user>[^/]+)",
           "dest": "/index.js",
           "methods": ["GET"]
