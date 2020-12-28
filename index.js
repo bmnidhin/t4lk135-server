@@ -9,6 +9,10 @@ const verfiyToken =require('./utils/verifytoken')
 const port = 5000;
 const { Deta } = require("deta")
 require('dotenv').config()
+var nodemailer = require('nodemailer');
+const accountSid = process.env.TWILIO_ACCOUNT_SID;
+const authToken = process.env.TWILIO_AUTH_TOKEN;
+const client = require('twilio')(accountSid, authToken);
 // const episodes = './data/episodes.json'
 // const crowd = './data/playlists.json'
 
@@ -54,6 +58,15 @@ app.get("/", (req, res) => {
     next();
   });
 
+    // create reusable transporter object using the default SMTP transport
+  let transporter = nodemailer.createTransport({
+    service: 'gmail',
+  auth: {
+    user: 'nidhinbm5@gmail.com',
+    pass: process.env.GMAILPASS // naturally, replace both with your real credentials or an application-specific password
+  }
+});
+
 
 
 app.post('/signup', function(req, res){
@@ -81,11 +94,31 @@ app.get('/user', verfiyToken, async (req, res) => {
       res.status(404).json({"message": "user not found"});
   }
 });
-app.get('/login', (req, res) => {
+app.get('/sendmail',async (req, res) => {
+
+
+
+
+  let info = await transporter.sendMail({
+    from: '"Smart Farm Alert 🚜" <nidhinbm@example.com>', // sender address
+    to: "nidhinbm.bm@gmail.com, susmith7sub@gmail.com, krishnadasmuraleedharan007das@gmail.com ", // list of receivers
+    subject: "Critical Alert in Susmi Farm", // Subject line
+    text: "Hello world?", // plain text body
+    html: '<body style="font-family: sans-serif;">'+
+    '	<h1>Temperature is 30C 🌡️ ❄️ 💡</h1>'+
+    '	<p>Temperature is Rising, Fan is automatically turned on 🚰</p>'+
+    '</body>', // html body
+  });
+ 
+  await client.messages
+  .create({
+     body: 'This is the ship that made the Kessel Run in fourteen parsecs?',
+     from: '+19198876246',
+     to: '+918289840365'
+   })
+  .then(message => console.log(message.sid));
   res.status(200).send({
-    auth:  true,
-    user: true,
-    token:  true
+    id:info.messageId
 })
   });
   app.get('/temperature/:value', async (req, res) => {
@@ -95,7 +128,35 @@ app.get('/login', (req, res) => {
       status:true,
       temp:temp
     })
-   
+ 
+   if(temp >40){
+    let info = await transporter.sendMail({
+      from: '"Smart Farm Alert 🚜" <nidhinbm@example.com>', // sender address
+      to: "nidhinbm.bm@gmail.com, susmith7sub@gmail.com, krishnadasmuraleedharan007das@gmail.com ", // list of receivers
+      subject: "Temperature | Critical Alert in Susmi Farm", // Subject line
+      text: " 🌡️ ❄️ 💡", // plain text body
+      html: '<body style="font-family: sans-serif;">'+
+      '	<h1>Temperature is '+ 
+       temp + 
+      ' 🌡️</h1>'+
+      '	<p>Temperature is Rising, Fan is automatically turned on 🚰</p>'+
+      '</body>', // html body
+    });
+    let ssid = Math.floor(Math.random() * 3);
+    if (ssid ===2) {
+      await client.messages
+    .create({
+       body: 'Temperature is Rising, Fan is automatically turned on 🚰',
+       from: '+19198876246',
+       to: '+918289840365'
+     })
+     .then(message => console.log("temperature SMS " + message.sid));
+    }
+    else{
+      console.log("No SMS "+ssid)
+    }
+  console.log("Temperature Mail "+ info.messageId)
+   }
     res.send(
     temp
   );
@@ -107,6 +168,23 @@ app.get('/login', (req, res) => {
       status:true,
       temp:temp
     })
+    
+    if(temp >40){
+      let info = await transporter.sendMail({
+        from: '"Smart Farm Alert 🚜" <nidhinbm@example.com>', // sender address
+        to: "nidhinbm.bm@gmail.com, susmith7sub@gmail.com, krishnadasmuraleedharan007das@gmail.com ", // list of receivers
+        subject: "Moisture | Critical Alert in Susmi Farm", // Subject line
+        text: " 🌡️ ❄️ 💡", // plain text body
+        html: '<body style="font-family: sans-serif;">'+
+        '	<h1>Moisture is '+ 
+         temp + 
+        ' 🌡️</h1>'+
+        '	<p>Moisture is Rising, Pump is automatically turned on 🚰</p>'+
+        '</body>', // html body
+      });
+ 
+    console.log("Moisture Mail "+ info.messageId)
+     }
    
     res.send(
     temp
@@ -119,7 +197,22 @@ app.get('/login', (req, res) => {
       status:true,
       temp:temp
     })
-   
+    if(temp >40){
+      let info = await transporter.sendMail({
+        from: '"Smart Farm Alert 🚜" <nidhinbm@example.com>', // sender address
+        to: "nidhinbm.bm@gmail.com, susmith7sub@gmail.com, krishnadasmuraleedharan007das@gmail.com ", // list of receivers
+        subject: "Humidity | Critical Alert in Susmi Farm", // Subject line
+        text: " 🌡️ ❄️ 💡", // plain text body
+        html: '<body style="font-family: sans-serif;">'+
+        '	<h1>Humidity is '+ 
+         temp + 
+        ' 🌡️</h1>'+
+        '	<p>Humidity is Rising, Pump is automatically turned on 🚰</p>'+
+        '</body>', // html body
+      });
+    
+    console.log("Humidity Mail "+ info.messageId)
+     }
     res.send(
     temp
   );
@@ -132,6 +225,22 @@ app.get('/login', (req, res) => {
       temp:temp
     })
    
+    if(temp >40){
+      let info = await transporter.sendMail({
+        from: '"Smart Farm Alert 🚜" <nidhinbm@example.com>', // sender address
+        to: "nidhinbm.bm@gmail.com, susmith7sub@gmail.com, krishnadasmuraleedharan007das@gmail.com ", // list of receivers
+        subject: "Light | Critical Alert in Susmi Farm", // Subject line
+        text: " 🌡️ ❄️ 💡", // plain text body
+        html: '<body style="font-family: sans-serif;">'+
+        '	<h1>Light is '+ 
+         temp + 
+        ' 🌡️</h1>'+
+        '	<p>Darkness, Light is automatically turned on 🚰</p>'+
+        '</body>', // html body
+      });
+    
+    console.log("Light Mail "+ info.messageId)
+     }
     res.send(
     temp
   );
@@ -143,7 +252,34 @@ app.get('/login', (req, res) => {
       status:true,
       temp:temp
     })
-   
+    if(temp >40){
+      let info = await transporter.sendMail({
+        from: '"Smart Farm Alert 🚜" <nidhinbm@example.com>', // sender address
+        to: "nidhinbm.bm@gmail.com, susmith7sub@gmail.com, krishnadasmuraleedharan007das@gmail.com ", // list of receivers
+        subject: "Water | Critical Alert in Susmi Farm", // Subject line
+        text: " 🌡️ ❄️ 💡", // plain text body
+        html: '<body style="font-family: sans-serif;">'+
+        '	<h1>Water Content is '+ 
+         temp + 
+        ' 🌡️</h1>'+
+        '	<p>Low Water, Pump is automatically turned on 🚰</p>'+
+        '</body>', // html body
+      });
+      let ssid = Math.floor(Math.random() * 3);
+      if (ssid ===2) {
+        await client.messages
+      .create({
+         body: 'Low Water, Pump is automatically turned on 🚰',
+         from: '+19198876246',
+         to: '+918289840365'
+       })
+       .then(message => console.log("temperature SMS " + message.sid));
+      }
+      else{
+        console.log("No SMS "+ssid)
+      }
+    console.log("Moisture Mail "+ info.messageId)
+     }
     res.send(
     temp
   );
