@@ -113,9 +113,9 @@ app.post('/login', async (req, res) => {
 
 
 
-app.post("/v2/listen", function(req, res, next) {
+app.post("/v2/listen", async function(req, res, next) {
    
-  ep.put({
+  await ep.put({
     title:req.body.title,
     key:slugify(req.body.title),
     slug:slugify(req.body.title),
@@ -128,7 +128,7 @@ app.post("/v2/listen", function(req, res, next) {
     duration:req.body.duration,
     cover:req.body.cover
  })
- res.send(req.body.isEventPublished)
+ res.send({"published":true})
 });
 
 app.get('/v2/listen', async (req, res, next) => {
