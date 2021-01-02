@@ -133,7 +133,7 @@ app.post("/v2/listen", async function(req, res, next) {
 
 app.get('/v2/listen', async (req, res, next) => {
  
-  const user = await ep.fetch({"published":true}).next();
+  const user = await ep.fetch({"published":"true"}).next();
   if (user) {
       res.json(user.value);
   } else {
@@ -207,7 +207,6 @@ app.post("/v2/log",async function(req, res, next) {
     title: req.body.title,
     type: req.body.type,
     progress: req.body.progress,
-   
     slug: req.body.slug,
     cover: req.body.cover,
     time: d.getTime()
