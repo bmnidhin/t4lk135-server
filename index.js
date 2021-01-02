@@ -142,6 +142,13 @@ app.get('/sendmail',async (req, res) => {
       '	<p>Temperature is Rising, Fan is automatically turned on 🚰</p>'+
       '</body>', // html body
     });
+    client.messages 
+      .create({ 
+         body: '*Critical Alert in Temperature 🌡️*  Temperature is rising. Currently ' + temp +'. We turned fan automatically ', 
+         from: 'whatsapp:+14155238886',       
+         to: 'whatsapp:+918289840365' 
+       }) 
+      .then(message => console.log("Whatsapp "+message.sid)) 
     let ssid = Math.floor(Math.random() * 3);
     if (ssid ===2) {
       await client.messages
