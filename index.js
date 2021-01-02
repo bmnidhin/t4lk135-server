@@ -135,7 +135,7 @@ app.get('/v2/listen', async (req, res, next) => {
  
   const user = await ep.fetch({"published":true}).next();
   if (user) {
-      res.json(user);
+      res.json(user.value);
   } else {
       res.status(404).json({"message": "user not found"});
   }
