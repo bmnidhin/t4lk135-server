@@ -216,6 +216,16 @@ app.post("/v2/log",async function(req, res, next) {
  res.send({status :"done"})
 });
 
+app.get('/v2/log', async (req, res, next) => {
+ 
+  const user = await log.fetch({"type":"progress"}).next();
+  if (user) {
+      res.json(user.value);
+  } else {
+      res.status(404).json({"message": "user not found"});
+  }
+});
+
 
 app.get('/v2/log/:user', async (req, res, next) => {
   let uid = req.params.user

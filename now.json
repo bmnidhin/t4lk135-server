@@ -41,12 +41,12 @@
         {
           "src": "/v2/log",
           "dest": "/index.js",
-          "methods": ["POST"]
+          "methods": ["POST","GET"]
         },
         {
           "src": "/v2/eplike",
           "dest": "/index.js",
-          "methods": ["POST"]
+          "methods": ["POST","GET"]
         },
         {
           "src": "/v2/eplike/(?<slug>[^/]+)",
