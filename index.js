@@ -113,7 +113,7 @@ app.post('/login', async (req, res) => {
 
 
 
-app.post("/v2/listen", verfiyToken, function(req, res, next) {
+app.post("/v2/listen", function(req, res, next) {
    
   ep.put({
     title:req.body.title,
