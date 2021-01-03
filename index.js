@@ -30,6 +30,7 @@ const db = deta.Base("humans")
 const ep = deta.Base("episodes")
 const log = deta.Base("log")
 const like = deta.Base("likes")
+const promo = deta.Base("promo")
 
 app.use(cors());
 // Body parser
@@ -114,19 +115,22 @@ app.post('/login', async (req, res) => {
 
 
 app.post("/v2/listen", async function(req, res, next) {
-   
+  let d = new Date();
   await ep.put({
+    inserted: d.getTime(),
     title:req.body.title,
     key:slugify(req.body.title),
     slug:slugify(req.body.title),
-    inserted: new Date(),
+    type: req.body.type,
+    artist:req.body.artist,
     published:req.body.published,
     publishedAtDate:req.body.publishedAtDate,
     publishedAtTime:req.body.publishedAtTime,
     content:req.body.content,
     URL:req.body.URL,
     duration:req.body.duration,
-    cover:req.body.cover
+    cover:req.body.cover,
+    added:true
  })
  res.send({"published":true})
 });
@@ -134,6 +138,16 @@ app.post("/v2/listen", async function(req, res, next) {
 app.get('/v2/listen', async (req, res, next) => {
  
   const user = await ep.fetch({"published":"true"}).next();
+  if (user) {
+      res.json(user.value);
+  } else {
+      res.status(404).json({"message": "user not found"});
+  }
+});
+
+app.get('/v2/listenall/:type', async (req, res, next) => {
+  const type = req.params.type
+  const user = await ep.fetch({"type":type}).next();
   if (user) {
       res.json(user.value);
   } else {
@@ -196,6 +210,29 @@ app.delete('/v2/listen/:slug', verfiyToken, async (req, res) => {
   await ep.delete(id);
   res.json({"message": "deleted"})
 });
+
+app.post("/v2/notification",async function(req, res, next) {
+  let d = new Date();
+  await promo.put({
+    key:"posters" ,
+    posterImgOne:req.body.posterImgOne,
+    posterImgTwo: req.body. posterImgTwo,
+    inserted:d.getTime()
+ })
+ res.send({status :"done"})
+});
+
+app.get('/v2/notification', async (req, res, next) => {
+ 
+  const user = await ep.get("posters");
+  if (user) {
+      res.json(user);
+  } else {
+      res.status(404).json({"message": "user not founds"});
+  }
+});
+
+
 
 app.post("/v2/log",async function(req, res, next) {
   let d = new Date();

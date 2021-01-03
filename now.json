@@ -34,9 +34,19 @@
           "methods": ["GET"]
         },
         {
+          "src": "/v2/notification",
+          "dest": "/index.js",
+          "methods": ["GET","POST"]
+        },
+        {
           "src": "/v2/listen",
           "dest": "/index.js",
           "methods": ["GET","POST"]
+        },
+        {
+          "src": "/v2/listenall/(?<type>[^/]+)",
+          "dest": "/index.js",
+          "methods": ["GET"]
         },
         {
           "src": "/v2/log",
