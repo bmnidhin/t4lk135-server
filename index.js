@@ -145,6 +145,15 @@ app.get('/v2/listen', async (req, res, next) => {
   }
 });
 
+app.get('/v2/listenall', async (req, res, next) => {
+  
+  const user = await ep.fetch({"added":true}).next();
+  if (user) {
+      res.json(user.value);
+  } else {
+      res.status(404).json({"message": "user not found"});
+  }
+});
 app.get('/v2/listenall/:type', async (req, res, next) => {
   const type = req.params.type
   const user = await ep.fetch({"type":type}).next();

@@ -44,6 +44,11 @@
           "methods": ["GET","POST"]
         },
         {
+          "src": "/v2/listenall",
+          "dest": "/index.js",
+          "methods": ["GET"]
+        },
+        {
           "src": "/v2/listenall/(?<type>[^/]+)",
           "dest": "/index.js",
           "methods": ["GET"]
