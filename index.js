@@ -30,7 +30,7 @@ const db = deta.Base("humans")
 const ep = deta.Base("episodes")
 const log = deta.Base("log")
 const like = deta.Base("likes")
-const promo = deta.Base("promo")
+const pr = deta.Base("promo")
 
 app.use(cors());
 // Body parser
@@ -213,7 +213,7 @@ app.delete('/v2/listen/:slug', verfiyToken, async (req, res) => {
 
 app.post("/v2/notification",async function(req, res, next) {
   let d = new Date();
-  await promo.put({
+  await pr.put({
     key:"posters" ,
     posterImgOne:req.body.posterImgOne,
     posterImgTwo: req.body. posterImgTwo,
@@ -224,7 +224,7 @@ app.post("/v2/notification",async function(req, res, next) {
 
 app.get('/v2/notification', async (req, res, next) => {
  
-  const user = await ep.get("posters");
+  const user = await pr.get("posters");
   if (user) {
       res.json(user);
   } else {
