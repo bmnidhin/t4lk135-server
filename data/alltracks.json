@@ -2,7 +2,7 @@
        "id": 9,
       "title":"Loop Episode",
       "slug": "watch/loop-episode",
-      "isEventPublished":true,
+      "isEventPublished":false,
        "artist":"Originals",
       "publishedAtDate":"2020-11-18",
       "publishedAtTime":"19:00:00",
