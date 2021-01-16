@@ -48,6 +48,16 @@
             "methods": ["GET"]
           },
           {
+            "src": "/watch",
+            "dest": "/index.js",
+            "methods": ["GET"]
+          },
+          {
+            "src": "/watch/(?<slug>[^/]+)",
+            "dest": "/index.js",
+            "methods": ["GET"]
+          },
+          {
             "src": "/promo/(?<slug>[^/]+)",
             "dest": "/index.js",
             "methods": ["GET"]

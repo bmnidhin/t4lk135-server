@@ -13,6 +13,7 @@ let settings = require("./data/settings.json")
 let clubs = require("./data/club.json")
 let featured = require("./data/featured.json")
 let promo =require("./data/promo.json")
+let watch =require("./data/watch.json")
 let all =require("./data/alltracks.json")
 
 app.use(cors());
@@ -63,6 +64,19 @@ app.get("/clubs", function(req, res, next) {
 app.get('/clubs/:slug',  function (req, res) {
   const slug = req.params.slug
   const row = clubs.find(r => r.slug == slug)  
+  
+  res.json(row)
+  
+})
+
+app.get("/watch", function(req, res, next) {
+
+  res.json(watch);
+});
+/* A post by id */
+app.get('/watch/:slug',  function (req, res) {
+  const slug = req.params.slug
+  const row = watch.find(r => r.slug == slug)  
   
   res.json(row)
   
