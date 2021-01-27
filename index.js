@@ -101,7 +101,7 @@ app.get('/sendmail',async (req, res) => {
 
   let info = await transporter.sendMail({
     from: '"Smart Farm Alert 🚜" <nidhinbm@example.com>', // sender address
-    to: "nidhinbm.bm@gmail.com, susmith7sub@gmail.com, krishnadasmuraleedharan007das@gmail.com ", // list of receivers
+    to: "nidhinbm.bm@gmail.com, susmith7sub@gmail.com, krishnadasmuraleedharan007das@gmail.com,bbkaniyath@gmail.com ", // list of receivers
     subject: "Critical Alert in Susmi Farm", // Subject line
     text: "Hello world?", // plain text body
     html: '<body style="font-family: sans-serif;">'+
@@ -121,6 +121,8 @@ app.get('/sendmail',async (req, res) => {
     id:info.messageId
 })
   });
+
+  //post routes
   app.get('/temperature/:value', async (req, res) => {
     const temp = req.params.value
     await pr.put({
@@ -129,7 +131,7 @@ app.get('/sendmail',async (req, res) => {
       temp:temp
     })
  
-   if(temp >40){
+   if(temp >30){ //30
     let info = await transporter.sendMail({
       from: '"Smart Farm Alert 🚜" <nidhinbm@example.com>', // sender address
       to: "nidhinbm.bm@gmail.com, susmith7sub@gmail.com, krishnadasmuraleedharan007das@gmail.com ", // list of receivers
@@ -150,7 +152,6 @@ app.get('/sendmail',async (req, res) => {
        }) 
       .then(message => console.log("Whatsapp "+message.sid)) 
     let ssid = Math.floor(Math.random() * 3);
-    if (ssid ===2) {
       await client.messages
     .create({
        body: 'Temperature is Rising, Fan is automatically turned on 🚰',
@@ -158,10 +159,8 @@ app.get('/sendmail',async (req, res) => {
        to: '+918289840365'
      })
      .then(message => console.log("temperature SMS " + message.sid));
-    }
-    else{
-      console.log("No SMS "+ssid)
-    }
+    
+    
   console.log("Temperature Mail "+ info.messageId)
    }
     res.send(
@@ -176,7 +175,7 @@ app.get('/sendmail',async (req, res) => {
       temp:temp
     })
     
-    if(temp >40){
+    if(temp !==0){
       let info = await transporter.sendMail({
         from: '"Smart Farm Alert 🚜" <nidhinbm@example.com>', // sender address
         to: "nidhinbm.bm@gmail.com, susmith7sub@gmail.com, krishnadasmuraleedharan007das@gmail.com ", // list of receivers
@@ -191,6 +190,16 @@ app.get('/sendmail',async (req, res) => {
       });
  
     console.log("Moisture Mail "+ info.messageId)
+    await client.messages
+    .create({
+       body: 'Moisture is Rising, Pump is automatically turned on 🚰',
+       from: '+19198876246',
+       to: '+918289840365'
+     })
+     .then(message => console.log("Moisture SMS " + message.sid));
+    
+    
+
      }
    
     res.send(
@@ -204,7 +213,7 @@ app.get('/sendmail',async (req, res) => {
       status:true,
       temp:temp
     })
-    if(temp >40){
+    if(temp >65){
       let info = await transporter.sendMail({
         from: '"Smart Farm Alert 🚜" <nidhinbm@example.com>', // sender address
         to: "nidhinbm.bm@gmail.com, susmith7sub@gmail.com, krishnadasmuraleedharan007das@gmail.com ", // list of receivers
@@ -214,9 +223,18 @@ app.get('/sendmail',async (req, res) => {
         '	<h1>Humidity is '+ 
          temp + 
         ' 🌡️</h1>'+
-        '	<p>Humidity is Rising, Pump is automatically turned on 🚰</p>'+
+        '	<p>Humidity is Rising, Fan is automatically turned on 🚰</p>'+
         '</body>', // html body
       });
+      await client.messages
+      .create({
+         body: 'Humidity is Rising, Fan is automatically turned on 🚰',
+         from: '+19198876246',
+         to: '+918289840365'
+       })
+       .then(message => console.log("Humidity SMS " + message.sid));
+      
+      
     
     console.log("Humidity Mail "+ info.messageId)
      }
@@ -232,7 +250,7 @@ app.get('/sendmail',async (req, res) => {
       temp:temp
     })
    
-    if(temp >40){
+    if(temp <40){
       let info = await transporter.sendMail({
         from: '"Smart Farm Alert 🚜" <nidhinbm@example.com>', // sender address
         to: "nidhinbm.bm@gmail.com, susmith7sub@gmail.com, krishnadasmuraleedharan007das@gmail.com ", // list of receivers
@@ -245,7 +263,13 @@ app.get('/sendmail',async (req, res) => {
         '	<p>Darkness, Light is automatically turned on 🚰</p>'+
         '</body>', // html body
       });
-    
+      await client.messages
+      .create({
+         body: 'Darkness, Light is automatically turned on 🚰',
+         from: '+19198876246',
+         to: '+918289840365'
+       })
+       .then(message => console.log("Light SMS " + message.sid));
     console.log("Light Mail "+ info.messageId)
      }
     res.send(
@@ -273,7 +297,7 @@ app.get('/sendmail',async (req, res) => {
         '</body>', // html body
       });
       let ssid = Math.floor(Math.random() * 3);
-      if (ssid ===2) {
+     
         await client.messages
       .create({
          body: 'Low Water, Pump is automatically turned on 🚰',
@@ -281,10 +305,7 @@ app.get('/sendmail',async (req, res) => {
          to: '+918289840365'
        })
        .then(message => console.log("temperature SMS " + message.sid));
-      }
-      else{
-        console.log("No SMS "+ssid)
-      }
+  
     console.log("Moisture Mail "+ info.messageId)
      }
     res.send(
@@ -292,7 +313,7 @@ app.get('/sendmail',async (req, res) => {
   );
   })
   
-
+//get routes
   app.get('/temperature', async (req, res, next) => {
  
     const temperature = await pr.fetch({"status":true}).next()
