@@ -66,7 +66,7 @@ app.get("/", (req, res) => {
     pass: process.env.GMAILPASS // naturally, replace both with your real credentials or an application-specific password
   }
 });
-
+const mailID = "nidhinbm.bm@gmail.com, High Techth7sub@gmail.com, krishnadasmuraleedharan007das@gmail.com, bbkaniyath@gmail.com "
 
 
 app.post('/signup', function(req, res){
@@ -101,8 +101,8 @@ app.get('/sendmail',async (req, res) => {
 
   let info = await transporter.sendMail({
     from: '"Smart Farm Alert 🚜" <nidhinbm@example.com>', // sender address
-    to: "nidhinbm.bm@gmail.com, susmith7sub@gmail.com, krishnadasmuraleedharan007das@gmail.com,bbkaniyath@gmail.com ", // list of receivers
-    subject: "Critical Alert in Susmi Farm", // Subject line
+    to: "nidhinbm.bm@gmail.com, High Techth7sub@gmail.com, krishnadasmuraleedharan007das@gmail.com,bbkaniyath@gmail.com ", // list of receivers
+    subject: "Critical Alert in High Tech Farm", // Subject line
     text: "Hello world?", // plain text body
     html: '<body style="font-family: sans-serif;">'+
     '	<h1>Temperature is 30C 🌡️ ❄️ 💡</h1>'+
@@ -134,8 +134,8 @@ app.get('/sendmail',async (req, res) => {
    if(temp >30){ //30
     let info = await transporter.sendMail({
       from: '"Smart Farm Alert 🚜" <nidhinbm@example.com>', // sender address
-      to: "nidhinbm.bm@gmail.com, susmith7sub@gmail.com, krishnadasmuraleedharan007das@gmail.com ", // list of receivers
-      subject: "Temperature | Critical Alert in Susmi Farm", // Subject line
+      to: mailID, // list of receivers
+      subject: "Temperature | Critical Alert in High Tech Farm", // Subject line
       text: " 🌡️ ❄️ 💡", // plain text body
       html: '<body style="font-family: sans-serif;">'+
       '	<h1>Temperature is '+ 
@@ -178,8 +178,8 @@ app.get('/sendmail',async (req, res) => {
     if(temp !==0){
       let info = await transporter.sendMail({
         from: '"Smart Farm Alert 🚜" <nidhinbm@example.com>', // sender address
-        to: "nidhinbm.bm@gmail.com, susmith7sub@gmail.com, krishnadasmuraleedharan007das@gmail.com ", // list of receivers
-        subject: "Moisture | Critical Alert in Susmi Farm", // Subject line
+        to: mailID, // list of receivers
+        subject: "Moisture | Critical Alert in High Tech Farm", // Subject line
         text: " 🌡️ ❄️ 💡", // plain text body
         html: '<body style="font-family: sans-serif;">'+
         '	<h1>Moisture is '+ 
@@ -216,8 +216,8 @@ app.get('/sendmail',async (req, res) => {
     if(temp >65){
       let info = await transporter.sendMail({
         from: '"Smart Farm Alert 🚜" <nidhinbm@example.com>', // sender address
-        to: "nidhinbm.bm@gmail.com, susmith7sub@gmail.com, krishnadasmuraleedharan007das@gmail.com ", // list of receivers
-        subject: "Humidity | Critical Alert in Susmi Farm", // Subject line
+        to: mailID, // list of receivers
+        subject: "Humidity | Critical Alert in High Tech Farm", // Subject line
         text: " 🌡️ ❄️ 💡", // plain text body
         html: '<body style="font-family: sans-serif;">'+
         '	<h1>Humidity is '+ 
@@ -253,8 +253,8 @@ app.get('/sendmail',async (req, res) => {
     if(temp <40){
       let info = await transporter.sendMail({
         from: '"Smart Farm Alert 🚜" <nidhinbm@example.com>', // sender address
-        to: "nidhinbm.bm@gmail.com, susmith7sub@gmail.com, krishnadasmuraleedharan007das@gmail.com ", // list of receivers
-        subject: "Light | Critical Alert in Susmi Farm", // Subject line
+        to: mailID, // list of receivers
+        subject: "Light | Critical Alert in High Tech Farm", // Subject line
         text: " 🌡️ ❄️ 💡", // plain text body
         html: '<body style="font-family: sans-serif;">'+
         '	<h1>Light is '+ 
@@ -286,8 +286,8 @@ app.get('/sendmail',async (req, res) => {
     if(temp >40){
       let info = await transporter.sendMail({
         from: '"Smart Farm Alert 🚜" <nidhinbm@example.com>', // sender address
-        to: "nidhinbm.bm@gmail.com, susmith7sub@gmail.com, krishnadasmuraleedharan007das@gmail.com ", // list of receivers
-        subject: "Water | Critical Alert in Susmi Farm", // Subject line
+        to: mailID, // list of receivers
+        subject: "Water | Critical Alert in High Tech Farm", // Subject line
         text: " 🌡️ ❄️ 💡", // plain text body
         html: '<body style="font-family: sans-serif;">'+
         '	<h1>Water Content is '+ 
