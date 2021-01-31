@@ -1,15 +1,15 @@
 [ {
        "id": 9,
-      "title":"Loop Episode",
-      "slug": "watch/loop-episode",
+       "title":"Samsaram Aarogyathinu Haneekaram",
+      "slug": "watch/samsaram",
       "isEventPublished":false,
        "artist":"Originals",
-      "publishedAtDate":"2020-11-18",
+      "publishedAtDate":"2021-01-31",
       "publishedAtTime":"19:00:00",
-      "content": "LOVE LOCKS'20 is the annual hair donation drive conducted by STEPS TKMCE, an initiative by students and alumnus of TKMCE. In this episode of The TKM Show, along with motivational speaker and cancer survivor Mr. Prasanth Rajan, we have our beloved alumnis, Soumya Madanan, Anju MV, and Anagha Pradeep of the 2014-18 batch sharing their stories and experiences of being a part of STEPS and Lovelocks throughout the years.",
+     "content": "2020 was quite the ride, but 2021 brings forth the promise of a new dawn. With offline classes, meet-ups, and good vibes, the new year is in its full swing, rendering chances to start afresh. So why not kickstart the first episode of the year with a bit of humour and fun from our very own freshers Here at TheTKMShow, we have in store for you a visual treat that would've you giggling throughout and wanting more. These brand new juniors will make you laugh out your lungs with their witty remarks and innocence"
       "URL": "https://www.youtube.com/watch?v=ZKhOs_Pc_7s",
       "duration" :"25:33",
-      "cover" : "https://bmnidhin.github.io/t4lk-static/s1/ep10.jpg"
+      "cover" : "https://thetkmshow.github.io/static/watch/w1.jpg"
     },
        {
        "id": 9,
