@@ -27,7 +27,7 @@
  {
        "id": 8,
       "title":"Online Class | Vine",
-      "slug": "online-class",
+      "slug": "listen/online-class",
       "isEventPublished":true,
        "artist":"Originals",
       "publishedAtDate":"2020-10-21",
@@ -40,7 +40,7 @@
  {
   "id": 1,
  "title":"Grease Mud Glory",
- "slug": "grease-mud-glory",
+ "slug": "club99/grease-mud-glory",
  "isEventPublished":true,
  "publishedAtDate":"2020-09-20",
  "publishedAtTime":"19:35:00",
@@ -55,7 +55,7 @@
   {
     "id": 7,
    "title":"Ketonam",
-   "slug": "ketonam",
+   "slug": "listen/ketonam",
    "isEventPublished":true,
    "publishedAtDate":"2020-08-31",
    "publishedAtTime":"19:40:00",
@@ -68,7 +68,7 @@
     {
     "id": 6,
    "title":"Roast Roasting Roasted",
-   "slug": "roast-roasting-roasted",
+   "slug": "listen/roast-roasting-roasted",
    "isEventPublished":true,
    "publishedAtDate":"2020-08-17",
    "publishedAtTime":"19:23:00",
@@ -81,7 +81,7 @@
   {
     "id": 5,
    "title":"A Tale of Triumph",
-   "slug": "a-tale-of-triumph",
+   "slug": "listen/a-tale-of-triumph",
    "isEventPublished":true,
    "publishedAtDate":"2020-08-10",
    "publishedAtTime":"19:20:00",
@@ -94,7 +94,7 @@
   {
     "id": 4,
    "title":"Pani Varunnund Avarachaa",
-   "slug": "pani-varunnund-avarachaa",
+   "slug": "listen/pani-varunnund-avarachaa",
    "isEventPublished":true,
    "publishedAtDate":"2020-07-27",
    "publishedAtTime":"19:10:00",
@@ -107,7 +107,7 @@
   {
     "id": 3,
    "title":"Minarangal Kadhaparayumbol",
-   "slug": "minarangal-kadhaparayumbol",
+   "slug": "listen/minarangal-kadhaparayumbol",
    "isEventPublished":true,
    "publishedAtDate":"2020-07-09",
    "publishedAtTime":"19:30:00",
@@ -119,7 +119,7 @@
  },
  { "id": 1,
    "title":"Ith Okke Enth?",
-   "slug": "ith-okke-yenth",
+   "slug": "listen/ith-okke-yenth",
    "isEventPublished":true,
    "publishedAtDate":"2020-06-22",
    "publishedAtTime":"19:21:19",
@@ -132,7 +132,7 @@
  {
    "id": 2,
    "title":"Ormayundo ee Mugham?.",
-   "slug": "ormayundo-ee-mugham",
+   "slug": "listen/ormayundo-ee-mugham",
    "isEventPublished":true,
    "publishedAtDate":"2020-06-11",
    "publishedAtTime":"19:23:03",
