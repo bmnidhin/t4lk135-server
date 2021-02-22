@@ -12,7 +12,7 @@
       "isPostersShown":true,
    
       
-      "isNotificationPanelShown":false,
-      "notification" :"Event Postponed" 
+      "isNotificationPanelShown":true,
+      "notification" :"Hey! Check Our New PWA" 
     
     }]
