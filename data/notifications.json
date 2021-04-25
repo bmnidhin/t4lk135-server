@@ -2,8 +2,8 @@
 [
     { 
       "isCountDownOrStreamingLiveActive": true,
-      "upComingEventName": "The Choice of Brave",
-      "countDownDate":"2020-11-18",
+      "upComingEventName": "Song Dedications Live",
+      "countDownDate":"2021-02-14",
       "countDownTime":"19:00:00",
       "posterImgOne":"https://bmnidhin.github.io/t4lk-static/poster/steps.jpg",
       "posterImgTwo":"https://bmnidhin.github.io/t4lk-static/poster/sae.jpg",
@@ -12,7 +12,7 @@
       "isPostersShown":true,
    
       
-      "isNotificationPanelShown":false,
-      "notification" :"Event Postponed" 
+      "isNotificationPanelShown":true,
+      "notification" :"Hey! Check Our New PWA" 
     
     }]
