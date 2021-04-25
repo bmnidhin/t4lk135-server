@@ -48,6 +48,16 @@
             "methods": ["GET"]
           },
           {
+            "src": "/mobile-alltracks",
+            "dest": "/index.js",
+            "methods": ["GET"]
+          },
+          {
+            "src": "/mobile-alltracks/(?<slug>[^/]+)",
+            "dest": "/index.js",
+            "methods": ["GET"]
+          },
+          {
             "src": "/watch",
             "dest": "/index.js",
             "methods": ["GET"]
