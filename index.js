@@ -15,6 +15,7 @@ let featured = require("./data/featured.json")
 let promo =require("./data/promo.json")
 let watch =require("./data/watch.json")
 let all =require("./data/alltracks.json")
+let mobile =require("./data/mobile-alltracks.json")
 
 app.use(cors());
 // Body parser
@@ -105,7 +106,18 @@ app.get('/alltracks/:slug',  function (req, res) {
  res.json(row)
  
 })
+/* A post by id */
+app.get('/mobile-alltracks/',  function (req, res) {
+  res.json(mobile)
+})
 
+app.get('/mobile-alltracks/:slug',  function (req, res) {
+ const slug = req.params.slug
+ const row = mobile.find(r => r.slug == slug)  
+ 
+ res.json(row)
+ 
+})
 
 
 app.get("/settings", function(req, res, next) {
