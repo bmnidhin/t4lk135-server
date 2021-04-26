@@ -285,7 +285,7 @@ let date_time = year + "-" + month + "-" + date + " " + hours + ":" + minutes + 
     slug: req.body.slug,
     cover: req.body.cover,
     time: d.getTime(),
-    timeStamp="date_time"
+    timeStamp=date_time
     
  })
  res.send({status :"done"})
