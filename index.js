@@ -224,7 +224,7 @@ app.get('/v2/notification', async (req, res, next) => {
 app.post("/v2/log",async function(req, res, next) {
   let d = new Date();
   let ind=d.toLocaleString('en-US', { timeZone: 'Asia/Kolkata' });
-  let date = d.getDate().toString() +"-" +d.getMonth().toString() +"-" + d.getFullYear().toString()
+  let date = d.getDate().toString() +"-" +(d.getMonth() + 1).toString() +"-" + d.getFullYear().toString()
 
   await log.put({
     key:req.body.slug+ "-"+ req.body.userId ,
