@@ -243,7 +243,9 @@ app.get('/v2/notification', async (req, res, next) => {
 
 app.post("/v2/log",async function(req, res, next) {
   let d = new Date();
-  let ind = new Date().toLocaleString("en-US", { timeZone: "Asia/Calcutta" });
+
+  let ind = convertTZ(d, "Asia/Calcutta")
+
 
 
 
@@ -412,7 +414,9 @@ function slugify(string) {
     .replace(/^-+/, '') // Trim - from start of text
     .replace(/-+$/, '') // Trim - from end of text
 }
-
+function convertTZ(date, tzString) {
+  return new Date((typeof date === "string" ? new Date(date) : date).toLocaleString("en-US", {timeZone: tzString}));   
+}
 // app.post('/v2/settings', verfiyToken, function(req, res, next) {
    
 
