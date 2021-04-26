@@ -74,6 +74,11 @@
           "methods": ["GET"]
         },
         {
+          "src": "/v2/log/(?<date>[^/]+)",
+          "dest": "/index.js",
+          "methods": ["GET"]
+        },
+        {
           "src": "/v2/listen/(?<slug>[^/]+)",
           "dest": "/index.js",
           "methods": ["GET","POST","PATCH"]

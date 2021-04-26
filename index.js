@@ -223,6 +223,11 @@ app.get('/v2/notification', async (req, res, next) => {
 });
 app.post("/v2/log",async function(req, res, next) {
   let d = new Date();
+  let ind=d.toLocaleString('en-US', { timeZone: 'Asia/Kolkata' });
+  let date = d.getDate().toString() +"-" +d.getMonth().toString() +"-" + d.getFullYear().toString()
+document.getElementById("demo").innerHTML = z;
+
+
   await log.put({
     key:req.body.slug+ "-"+ req.body.userId ,
     name: req.body.name,
@@ -234,7 +239,8 @@ app.post("/v2/log",async function(req, res, next) {
     slug: req.body.slug,
     cover: req.body.cover,
     time: d.getTime(),
-    date : d
+    date : ind,
+    fullDate : date
     
  })
  res.send({status :"done"})
@@ -263,6 +269,23 @@ app.get('/v2/log/:user', async (req, res, next) => {
       res.status(404).json({"message": "user not found"});
   }
 });
+
+app.get('/v2/log/:date', async (req, res, next) => {
+  let date = req.params.date
+  const water = await log.fetch({"fullDate":date}).next();
+  
+  if (water) {
+      res.json(
+      
+       water.value
+        
+      
+      );
+  } else {
+      res.status(404).json({"message": "Date not found"});
+  }
+});
+
 app.post("/v2/eplike",async function(req, res, next) {
    
   await like.put({
@@ -366,8 +389,8 @@ function slugify(string) {
     .replace(/-+$/, '') // Trim - from end of text
 }
 // app.post('/v2/settings', verfiyToken, function(req, res, next) {
-   
-  
+
+ 
 //   let settings={
 //      posterImgOne:req.body.posterImgOne ,
 //      posterImgTwo: req.body.posterImgTwo ,
