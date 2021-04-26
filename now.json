@@ -74,7 +74,7 @@
           "methods": ["GET"]
         },
         {
-          "src": "/v2/log/date/(?<date>[^/]+)",
+          "src": "/v2/getlog/date/(?<date>[^/]+)",
           "dest": "/index.js",
           "methods": ["GET"]
         },

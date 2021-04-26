@@ -268,7 +268,7 @@ app.get('/v2/log/:user', async (req, res, next) => {
   }
 });
 
-app.get('/v2/log/:date', async (req, res, next) => {
+app.get('/v2/getlog/date/:date', async (req, res, next) => {
   let date = req.params.date
   const water = await log.fetch({"fullDate":date}).next();
   
