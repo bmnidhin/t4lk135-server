@@ -1,4 +1,15 @@
-[ {
+[  {
+       "id": 12,
+      "title":"SexEd",
+      "slug": "listen/sex-ed",
+      "isEventPublished":true,
+      "publishedAtDate":"2021-06-06",
+      "publishedAtTime":"19:00:00",
+      "content": "'As each day passes, it becomes increasingly clear how much this society we live in requires proper sex education. It is time we as individuals, stop hushing and whispering, and finally accept that sex education is important. Sex education is a programme which educates and informs young individuals about sex, sexual health, sexuality, and sexual rights in an age-appropriate manner. It increases their awareness about their own body and that of the opposite gender.The TKM Show has had a wonderful session about Sex-Ed and its importance with Lt Cdr (Dr) Vipin Kumar (Retd) who works as a consultant OBS gynecologist with DHS Lakshadweep and a part time assistant professor in Karakonam medical college trivandrum. In the session he answers, sex-education related queries that the TKM student community had raised through a Google form';",
+      "URL": "https://d3ctxlq1ktw2nl.cloudfront.net/staging/2021-5-6/68a265f0-aa2c-2f36-4939-c98fedebcccc.mp3",
+      "duration" :"54:59",
+      "cover" : "https://thetkmshow.github.io/static/ep/ep12.jpg"
+    },{
        "id": 11,
       "title":"Po Mone Dinesha (Live Replay) ",
       "slug": "listen/po-mone-dinesha",
