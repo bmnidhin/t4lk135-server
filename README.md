@@ -1,3 +1,5 @@
-# Usefull APIs
+# REST API For Audio Tracks
 
-A list of Usefull APIs
+/ all api routes
+/listen - entire list of audio tracks
+/playlist - entire list of playlists
