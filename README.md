@@ -1,5 +1,56 @@
 # REST API For Audio Tracks
 
-/ all api routes
-/listen - entire list of audio tracks
-/playlist - entire list of playlists
+````
+ "routes": [
+        {
+          "src": "/listen",
+          "dest": "/index.js",
+          "methods": ["GET"]
+        },
+        {
+          "src": "/listen/(?<slug>[^/]+)",
+          "dest": "/index.js",
+          "methods": ["GET"]
+        },
+        {
+            "src": "/playlist",
+            "dest": "/index.js",
+            "methods": ["GET"]
+          },
+          {
+            "src": "/playlist/(?<slug>[^/]+)",
+            "dest": "/index.js",
+            "methods": ["GET"]
+          },
+          {
+            "src": "/clubs",
+            "dest": "/index.js",
+            "methods": ["GET"]
+          },
+          {
+            "src": "/clubs/(?<slug>[^/]+)",
+            "dest": "/index.js",
+            "methods": ["GET"]
+          },
+          {
+            "src": "/featured",
+            "dest": "/index.js",
+            "methods": ["GET"]
+          },
+          {
+            "src": "/promo/(?<slug>[^/]+)",
+            "dest": "/index.js",
+            "methods": ["GET"]
+          },
+          {
+            "src": "/settings",
+            "dest": "/index.js",
+            "methods": ["GET"]
+          },
+          {
+            "src": "/notifications",
+            "dest": "/index.js",
+            "methods": ["GET"]
+          }
+      ]
+````
