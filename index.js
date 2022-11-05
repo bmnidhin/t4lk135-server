@@ -16,6 +16,7 @@ let promo =require("./data/promo.json")
 let watch =require("./data/watch.json")
 let all =require("./data/alltracks.json")
 let mobile =require("./data/mobile-alltracks.json")
+const DeviceDetector = require('node-device-detector');
 
 app.use(cors());
 // Body parser
@@ -32,7 +33,14 @@ app.get("/", (req, res) => {
 
 /* All posts */
 app.get("/listen", function(req, res, next) {
-
+  const detector = new DeviceDetector({
+    clientIndexes: true,
+    deviceIndexes: true,
+    deviceAliasCode: false,
+  });
+  const userAgent = 'Mozilla/5.0 (Linux; Android 5.0; NX505J Build/KVT49L) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.78 Mobile Safari/537.36';
+  const result = detector.detect(userAgent);
+  console.log('result parse', result);
     res.json(posts);
   });
 /* A post by id */
